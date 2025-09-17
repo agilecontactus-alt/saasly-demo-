@@ -9,6 +9,6 @@ def read_root():
 @app.get("/users")
 def get_users():
     return [
-        {"id": 2, "name": "Krishna", "role": "Scrum Master"},
-        {"id": 3, "name": "Harini", "role": "Developer"},
+        {"id": 1, "name": "Bob", "role": "Scrum Master"},
+        {"id": 2, "name": "Harini", "role": "Developer"},
     ]
