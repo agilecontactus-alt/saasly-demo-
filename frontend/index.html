@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SaaSly Demo</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    h1 { color: #2c3e50; }
+    button { padding: 10px 20px; margin: 10px 0; cursor: pointer; }
+    ul { list-style-type: none; padding-left: 0; }
+    li { padding: 5px 0; }
+  </style>
+</head>
+<body>
+
+  <h1>Welcome to SaaSly Demo 🚀</h1>
+
+  <button id="loadUsers">Show Users</button>
+  <ul id="userList"></ul>
+
+<a href="https://calendly.com/agilecontactus/30min" target="_blank">
+  <button>Book a Free Call</button>
+</a>
+
+
+  <script>
+    const button = document.getElementById('loadUsers');
+    const userList = document.getElementById('userList');
+
+    button.addEventListener('click', async () => {
+      userList.innerHTML = 'Loading...';
+      try {
+        const response = await fetch('http://127.0.0.1:8000/users'); // update this if backend is online
+        const users = await response.json();
+        userList.innerHTML = '';
+        users.forEach(user => {
+          const li = document.createElement('li');
+          li.textContent = `${user.name} — ${user.role}`;
+          userList.appendChild(li);
+        });
+      } catch (err) {
+        userList.innerHTML = 'Failed to load users.';
+        console.error(err);
+      }
+    });
+  </script>
+
+</body>
+</html>
